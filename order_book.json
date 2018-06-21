@@ -49,38 +49,6 @@
       "qty": 0.5,
       "qty_remaining": 0.5,
       "status": "open"
-    },
-    {
-      "id": "Omar",
-      "side": "buy",
-      "prc": 9040,
-      "qty": 0.4,
-      "qty_remaining": 0.4,
-      "status": "open"
-    },
-    {
-      "id": "Lindsay",
-      "side": "buy",
-      "prc": 9030,
-      "qty": 0.3,
-      "qty_remaining": 0.3,
-      "status": "open"
-    },
-    {
-      "id": "Raymond",
-      "side": "buy",
-      "prc": 9020,
-      "qty": 0.2,
-      "qty_remaining": 0.2,
-      "status": "open"
-    },
-    {
-      "id": "Nikki",
-      "side": "buy",
-      "prc": 9010,
-      "qty": 0.1,
-      "qty_remaining": 0.1,
-      "status": "open"
     }
   ],
   "asks": [

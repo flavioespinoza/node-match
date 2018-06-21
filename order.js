@@ -23,10 +23,7 @@ function __timestamp () {
   return (new Date).getTime()
 }
 
-let bids_update = []
-let asks_update = []
-
-const match_sell_order = async function (order) {
+async function match_sell_order(order) {
 
   log.lightRed(JSON.stringify(order, null, 2))
 
@@ -35,21 +32,11 @@ const match_sell_order = async function (order) {
   return new Promise(async function (resolve) {
 
     //TODO: Change to REST Client
-
     fs.readFile(__dirname + '/' + 'order_book.json', 'utf8', function (err, data) {
 
       bids = JSON.parse(data).bids
 
       // console.log(JSON.stringify(bids, null, 2))
-
-      let model = {
-        'id': 'Amanda',
-        'side': 'buy',
-        'prc': 9070,
-        'qty': 0.7,
-        'qty_remaining': 0.7,
-        'status': 'open'
-      }
 
       if (order.side === 'sell') {
 
@@ -69,7 +56,6 @@ const match_sell_order = async function (order) {
 
             if (order.qty_remaining <= 0) {
 
-              log.black(JSON.stringify(order, null, 2))
               resolve({bids: bids, order: order, where: 'B: (order.qty_remaining <= 0)'})
 
             } else if (order.qty_remaining === bids[i].qty_remaining) {
@@ -108,7 +94,6 @@ const match_sell_order = async function (order) {
 
           }
 
-
         }
 
       }
@@ -117,34 +102,56 @@ const match_sell_order = async function (order) {
 
   })
 
-};
+}
 
-(async function () {
-
-  // let qty = 1.8
-  let qty = 3.5
-  let sell_order = await SellLimit(9080, qty)
+async function place_sell_order(sell_order) {
 
   match_sell_order(sell_order)
     .then(function (resolved) {
+
+      for (let i = 0; i < resolved.bids.length; i++) {
+        if (resolved.bids[i].status === 'filled') {
+          log.lightYellow('Remove Order from DB: ', JSON.stringify(resolved.bids[i], null, 2))
+        } else if (resolved.bids[i].status === 'partial') {
+          log.black('Update Order on DB: ', JSON.stringify(resolved.bids[i], null, 2))
+        }
+      }
+
       log.lightBlue(JSON.stringify(resolved.bids, null, 2))
+
       log.lightRed(JSON.stringify(resolved.order, null, 2))
-      log.black(resolved.where)
+      if (resolved.order.status === 'filled') {
+        log.lightYellow('socket.emit sell_order_filled: ', JSON.stringify(resolved.order, null, 2))
+      } else {
+        log.black('Send Sell Order to DB: ', JSON.stringify(resolved.order, null, 2))
+      }
+
+      log.bright.cyan(JSON.stringify(resolved.where, null, 2))
+
     })
     .catch(function (rejected) {
-      log.black(JSON.stringify(rejected, null, 2))
+      log.black('Rejected: ', JSON.stringify(rejected, null, 2))
     })
+}
+
+(async function () {
+
+  let qty = 1.8
+  // let qty = 2.1
+  // let qty = 3.5
+
+  let sell_order = await SellLimit(9080, qty)
+  await place_sell_order(sell_order)
 
 })()
 
 /** Transaction Functions */
-
 async function Order (side, type, order) {
 
   const state = {
     id: 'Ren',
     type,
-    side
+    side,
   }
 
   return new Promise(async function (resolve) {
@@ -162,7 +169,8 @@ async function SellLimit (prc, qty) {
     let order = {
       prc,
       qty,
-      qty_remaining: qty
+      qty_remaining: qty,
+      status: 'open',
     }
 
     return await Order('sell', 'limit', order)
@@ -189,7 +197,9 @@ async function BuyLimit (prc, qty) {
 
     let order = {
       prc,
-      qty
+      qty,
+      qty_remaining: qty,
+      status: 'open',
     }
 
     return await Order('buy', 'limit', order)
