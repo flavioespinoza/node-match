@@ -19,20 +19,12 @@ const url = 'https://min-api.cryptocompare.com/data/histominute?fsym=EMC2&tsym=B
 //   })
 // })
 
-console.log(__dirname)
+function __timestamp () {
+  return (new Date).getTime()
+}
 
 let bids_update = []
 let asks_update = []
-
-function tail_recursive (amount, running_total = 0) {
-
-  if (amount === 0) {
-    return running_total
-  } else {
-    return tail_recursive(amount - running_total, running_total + amount)
-  }
-
-}
 
 const match_sell_order = async function (order) {
 
@@ -41,65 +33,81 @@ const match_sell_order = async function (order) {
   let bids = []
 
   return new Promise(async function (resolve, reject) {
+
+    //TODO: Change to REST Client
+
     fs.readFile(__dirname + '/' + 'order_book.json', 'utf8', function (err, data) {
 
-      let obj = JSON.parse(data)
+      bids = JSON.parse(data).bids
 
-      bids = _.sortBy(_.map(obj.bids, function (obj) {
-        obj.id = chance.first()
-        obj.remaining = obj.amount
-        obj.status = 'open'
-        return obj
-      }), function (obj) {
-        return -(obj.price)
-      })
+      // console.log(JSON.stringify(bids, null, 2))
 
-      let qty = order.amount
+      let model = {
+        'id': 'Amanda',
+        'side': 'buy',
+        'prc': 9070,
+        'qty': 0.7,
+        'qty_remaining': 0.7,
+        'status': 'open'
+      }
 
       if (order.side === 'sell') {
 
         for (let i = 0; i < bids.length; i++) {
 
-          if (bids[i].price < order.price) {
+          if (order.prc > bids[i].prc) {
 
-            reject(order)
+            if (order.qty_remaining <= 0) {
+              order.status = 'filled'
+            } else {
+              order.status = 'partial'
+            }
+
+            resolve({bids: bids, order: order, where: 'A: (order.prc > bids[i].prc)'})
 
           } else {
 
-            log.green(i, ': ', JSON.stringify(bids[i], null, 2))
+            if (order.qty_remaining <= 0) {
 
-            log.lightBlue(qty)
+              log.black(JSON.stringify(order, null, 2))
+              resolve({bids: bids, order: order, where: 'B: (order.qty_remaining <= 0)'})
 
-            if (order.price < bids[i].price) {
-              if (qty <= 0) {
-                log.black(JSON.stringify(qty, null, 2))
-                return bids
+            } else if (order.qty_remaining === bids[i].qty_remaining) {
 
-              } else if (qty === bids[i].amount) {
-                qty = 0
-                log.cyan(JSON.stringify(qty, null, 2))
-                bids[i].remaining = 0
+              order.qty_remaining = order.qty_remaining - bids[i].qty_remaining
+
+              bids[i].qty_remaining = 0
+              bids[i].status = 'filled'
+
+              log.cyan(JSON.stringify(order, null, 2))
+
+              resolve({bids: bids, order: order, where: 'C: (order.qty_remaining === bids[i].qty_remaining)'})
+
+            } else if (order.qty_remaining > bids[i].qty_remaining) {
+
+              order.qty_remaining = (order.qty_remaining - bids[i].qty_remaining).toFixed(1)
+
+              bids[i].qty_remaining = 0
+              bids[i].status = 'filled'
+
+            } else {
+
+              bids[i].qty_remaining = (bids[i].qty_remaining - order.qty_remaining).toFixed(1)
+
+              if (bids[i].qty_remaining <= 0) {
                 bids[i].status = 'filled'
-
-              } else if (qty > bids[i].amount) {
-                qty = (_.subtract(qty, bids[i].amount)).toFixed(6)
-                log.red(qty)
-                bids[i].remaining = 0
-                bids[i].status = 'filled'
-
-              } else if (qty < bids[i].amount) {
-                bids[i].remaining = (bids[i].amount - qty).toFixed(6)
+              } else {
                 bids[i].status = 'partial'
-                qty = (qty - bids[i].amount).toFixed(6)
-                log.magenta(qty)
-                // log.cyan(JSON.stringify(bids, null, 2))
-                resolve({bids: bids, order: order})
               }
+
+              order.qty_remaining = 0
+              order.status = 'filled'
+              resolve({bids: bids, order: order, where: 'D: else'})
+
             }
 
-
-
           }
+
 
         }
 
@@ -112,8 +120,11 @@ const match_sell_order = async function (order) {
 };
 
 (async function () {
-  let qty = 1.5
-  let sell_order = await SellLimit(9649, qty, {oid: 'ren_' + chance.hash({length: 8})})
+
+  let qty = 1.8
+  // let qty = 3.5
+  let sell_order = await SellLimit(9080, qty)
+
   match_sell_order(sell_order)
     .then(function (resolved) {
       log.red(JSON.stringify(resolved, null, 2))
@@ -124,28 +135,17 @@ const match_sell_order = async function (order) {
 
 })()
 
-
 /** Transaction Functions */
-function __timestamp () {
-  return (new Date).getTime()
-}
 
 async function Order (side, type, order) {
 
-  let timestamp = __timestamp()
-
   const state = {
-    id: chance.guid({version: 5}),
+    id: 'Ren',
     type,
-    side,
-    timestamp
+    side
   }
 
   return new Promise(async function (resolve) {
-
-    if (order.params.oid) {
-      order.params.oid = order.params.oid + '_' + timestamp
-    }
 
     resolve(await Object.assign({}, state, order))
 
@@ -153,42 +153,14 @@ async function Order (side, type, order) {
 
 }
 
-async function BuyLimit (price, amount, params) {
+async function SellLimit (prc, qty) {
 
   try {
 
     let order = {
-      price,
-      amount,
-      params
-    }
-
-    return await Order('buy', 'limit', order)
-      .then(async function (order_res) {
-
-        return order_res
-
-      })
-      .catch(function (err) {
-        log.lightYellow('CATCH:', err)
-      })
-
-  } catch (__err) {
-
-    log.lightYellow(__err)
-
-  }
-
-}
-
-async function SellLimit (price, amount, params) {
-
-  try {
-
-    let order = {
-      price,
-      amount,
-      params
+      prc,
+      qty,
+      qty_remaining: qty
     }
 
     return await Order('sell', 'limit', order)
@@ -209,14 +181,32 @@ async function SellLimit (price, amount, params) {
 
 }
 
-// (async function () {
-//
-//   let buy_order = await BuyLimit(100, 30, {oid: 'stimpy_' + chance.hash({length: 8})})
-//   log.lightBlue(JSON.stringify(buy_order, null, 2))
-//
-//
-//
-// })()
+async function BuyLimit (prc, qty) {
+
+  try {
+
+    let order = {
+      prc,
+      qty
+    }
+
+    return await Order('buy', 'limit', order)
+      .then(async function (order_res) {
+
+        return order_res
+
+      })
+      .catch(function (err) {
+        log.lightYellow('CATCH:', err)
+      })
+
+  } catch (__err) {
+
+    log.lightYellow(__err)
+
+  }
+
+}
 
 //
 // const server = app.listen(8081, function () {

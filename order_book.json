@@ -3,354 +3,84 @@
   "market": "BTC/USDT",
   "bids": [
     {
+      "id": "Jim",
       "side": "buy",
-      "price": 9650.00000003,
-      "amount": 0.46945262,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
+      "prc": 9100,
+      "qty": 1,
+      "qty_remaining": 1,
+      "status": "open"
     },
     {
+      "id": "Lucy",
       "side": "buy",
-      "price": 9650.00000002,
-      "amount": 0.11899394,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
+      "prc": 9090,
+      "qty": 0.9,
+      "qty_remaining": 0.9,
+      "status": "open"
     },
     {
+      "id": "Max",
       "side": "buy",
-      "price": 9650.00000001,
-      "amount": 0.12583032,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
+      "prc": 9080,
+      "qty": 0.8,
+      "qty_remaining": 0.8,
+      "status": "open"
     },
     {
+      "id": "Amanda",
       "side": "buy",
-      "price": 9650,
-      "amount": 1.06356341,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
+      "prc": 9070,
+      "qty": 0.7,
+      "qty_remaining": 0.7,
+      "status": "open"
     },
     {
+      "id": "Luke",
       "side": "buy",
-      "price": 9645,
-      "amount": 0.05,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
+      "prc": 9060,
+      "qty": 0.6,
+      "qty_remaining": 0.6,
+      "status": "open"
     },
     {
+      "id": "Gabby",
       "side": "buy",
-      "price": 9642,
-      "amount": 0.5172682,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
+      "prc": 9050,
+      "qty": 0.5,
+      "qty_remaining": 0.5,
+      "status": "open"
     },
     {
+      "id": "Omar",
       "side": "buy",
-      "price": 9641.52579312,
-      "amount": 0.09827004,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
+      "prc": 9040,
+      "qty": 0.4,
+      "qty_remaining": 0.4,
+      "status": "open"
     },
     {
+      "id": "Lindsay",
       "side": "buy",
-      "price": 9641,
-      "amount": 0.00211599,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
+      "prc": 9030,
+      "qty": 0.3,
+      "qty_remaining": 0.3,
+      "status": "open"
     },
     {
+      "id": "Raymond",
       "side": "buy",
-      "price": 9640.34982665,
-      "amount": 0.01092612,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
+      "prc": 9020,
+      "qty": 0.2,
+      "qty_remaining": 0.2,
+      "status": "open"
     },
     {
+      "id": "Nikki",
       "side": "buy",
-      "price": 9635.83600002,
-      "amount": 0.86490255,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9633.32,
-      "amount": 0.00132721,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9631.8602055,
-      "amount": 0.00061276,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9606.75400002,
-      "amount": 0.0012631,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9600.00000001,
-      "amount": 0.18446083,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9600,
-      "amount": 1.24123758,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9597.1757024,
-      "amount": 0.16280936,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9595,
-      "amount": 0.04,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9592.14528508,
-      "amount": 0.0097,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9592.0989599,
-      "amount": 0.01231555,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9590,
-      "amount": 0.00244612,
-      "timestamp": 1512117867566,
-      "datetime": "Dec 5 2017, 01:44:27:566 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9584.24220002,
-      "amount": 0.00061276,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9583.41037675,
-      "amount": 0.00091674,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9580,
-      "amount": 0.50499739,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9577.7777,
-      "amount": 0.05,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9577.67200002,
-      "amount": 0.0012631,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9570,
-      "amount": 0.01096487,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9563.64067771,
-      "amount": 3,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9563.6406777,
-      "amount": 0.22923359,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9563.64067768,
-      "amount": 0.15301744,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9559,
-      "amount": 0.2,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9555,
-      "amount": 0.1,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9550.00000003,
-      "amount": 0.005202,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9550.00000001,
-      "amount": 0.10538157,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9548.59000002,
-      "amount": 0.0012631,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9547.59360701,
-      "amount": 0.04759065,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9543.84809315,
-      "amount": 0.01388168,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9541.1,
-      "amount": 0.1,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9536.62,
-      "amount": 0.00145618,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9534.960548,
-      "amount": 0.00137157,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9533.314,
-      "amount": 0.00944771,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9530.89591763,
-      "amount": 0.00034859,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9525.2,
-      "amount": 0.3,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9519.50800002,
-      "amount": 0.0012631,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9510,
-      "amount": 0.26393544,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9509.00000032,
-      "amount": 0.32007665,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9500.98991003,
-      "amount": 0.078,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9500.10101101,
-      "amount": 0.00410454,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9500.1,
-      "amount": 0.03286508,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9500.0005,
-      "amount": 0.1,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
-    },
-    {
-      "side": "buy",
-      "price": 9500.00000005,
-      "amount": 0.05281407,
-      "timestamp": 1512117867567,
-      "datetime": "Dec 5 2017, 01:44:27:567 AM"
+      "prc": 9010,
+      "qty": 0.1,
+      "qty_remaining": 0.1,
+      "status": "open"
     }
   ],
   "asks": [
