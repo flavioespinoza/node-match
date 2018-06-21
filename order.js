@@ -11,6 +11,7 @@ function __timestamp () {
   return (new Date).getTime()
 }
 
+
 const Order = async function (type, side, order) {
 
   let timestamp = __timestamp()
@@ -28,7 +29,7 @@ const Order = async function (type, side, order) {
         type,
         side,
         timestamp,
-        data: data.Data
+        data: data.Data[0]
       }
 
       resolve(await Object.assign({}, state, order))
