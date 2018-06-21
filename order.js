@@ -32,7 +32,7 @@ const match_sell_order = async function (order) {
 
   let bids = []
 
-  return new Promise(async function (resolve, reject) {
+  return new Promise(async function (resolve) {
 
     //TODO: Change to REST Client
 
@@ -121,13 +121,15 @@ const match_sell_order = async function (order) {
 
 (async function () {
 
-  let qty = 1.8
-  // let qty = 3.5
+  // let qty = 1.8
+  let qty = 3.5
   let sell_order = await SellLimit(9080, qty)
 
   match_sell_order(sell_order)
     .then(function (resolved) {
-      log.red(JSON.stringify(resolved, null, 2))
+      log.lightBlue(JSON.stringify(resolved.bids, null, 2))
+      log.lightRed(JSON.stringify(resolved.order, null, 2))
+      log.black(resolved.where)
     })
     .catch(function (rejected) {
       log.black(JSON.stringify(rejected, null, 2))
@@ -208,7 +210,7 @@ async function BuyLimit (prc, qty) {
 
 }
 
-//
+
 // const server = app.listen(8081, function () {
 //
 //   const host = server.address().address
