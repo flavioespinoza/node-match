@@ -16,6 +16,9 @@
     "morgan": "~1.9.0",
     "node-rest-client": "^3.1.0",
     "node-sass-middleware": "0.11.0",
-    "ololog": "^1.1.103"
+    "ololog": "^1.1.103",
+    "collections": "^5.0.6",
+    "lodash": "^4.17.4",
+    "sort-object": "^3.0.2"
   }
 }
