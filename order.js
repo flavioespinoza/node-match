@@ -97,7 +97,6 @@ async function match_buy_order (order) {
   return new Promise(async function (resolve) {
 
     //TODO: Change to REST Client
-
     fs.readFile(__dirname + '/' + 'order_book.json', 'utf8', function (err, data) {
 
       let asks = JSON.parse(data).sells
